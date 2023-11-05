@@ -18,7 +18,11 @@ public class FileEntity {
 
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+	private int id;
+	private int typeid;
+	private double balance; 
     private String fileName;
-    private String filePath;
+    private String filepancard;
+    private String fileadharcard;
+   
 }

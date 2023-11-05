@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 public class FileUploadController {
 
@@ -27,19 +28,22 @@ public class FileUploadController {
     }
 
     @PostMapping("/upload")
-    public ResponseEntity<String> handleFileUpload(@RequestParam("file") MultipartFile file) {
-        if (file.isEmpty()) {
-            return ResponseEntity.badRequest().body("Please select a file to upload");
+    public ResponseEntity<String> handleFileUpload(
+            @RequestParam("file") MultipartFile file,
+            @RequestParam("fileadharcard") MultipartFile fileadharcard,
+            @RequestParam("filepancard") MultipartFile filepancard) {
+        if (file.isEmpty() || fileadharcard.isEmpty() || filepancard.isEmpty()) {
+            return ResponseEntity.badRequest().body("Please select all files to upload");
         }
 
-        FileEntity fileEntity = new FileEntity();
-		fileEntity.setFileName(file.getOriginalFilename());
-//            fileEntity.setFileType(file.getContentType());
-//            fileEntity.setData(file.getBytes());
-//            fileEntity.setUploadTimestamp(LocalDateTime.now());
+        FileEntity aadharCardEntity = new FileEntity();
+        aadharCardEntity.setFileadharcard(fileadharcard.getOriginalFilename());
+        aadharCardEntity.setFilepancard(filepancard.getOriginalFilename());
+        aadharCardEntity.setFileName(file.getOriginalFilename());
+        fileRepository.save(aadharCardEntity);
 
-		fileRepository.save(fileEntity);
-
-		return ResponseEntity.ok("File uploaded successfully: " + file.getOriginalFilename());
+        return ResponseEntity.ok("Files uploaded successfully");
     }
-}
+
+		
+    }
