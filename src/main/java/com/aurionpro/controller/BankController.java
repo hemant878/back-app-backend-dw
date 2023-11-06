@@ -50,4 +50,6 @@ public class BankController {
 		List<UserEntity> allUsers = userService.findAll();
 		return allUsers;
 	}
+	
+	  
 }

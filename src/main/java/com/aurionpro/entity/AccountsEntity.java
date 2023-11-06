@@ -22,4 +22,15 @@ public class AccountsEntity {
 	private String accountName;
 	private String accountType;
 	private int balance;
+	
+	
+	public void deposit(int amount) {
+	     this.balance=this.balance+amount;
+	}
+	
+	public void withdraw(int amount) {
+	     this.balance=this.balance-amount;
+	}
 }
+
+

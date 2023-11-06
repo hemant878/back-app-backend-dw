@@ -14,4 +14,6 @@ public interface UserService {
 
 	UserEntity findById(int id);
 
+	
+
 }

@@ -42,6 +42,8 @@ public class AccountServiceImpl implements IAccountService {
 	public void deleteAccount(int id) {
 		 repository.deleteById(id);
 	}
+	
+	
 
 
 }
